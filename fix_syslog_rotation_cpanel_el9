@@ -19,5 +19,21 @@ else
 }
 EOF
     echo "syslog file created successfully"
+    
+    # Ask if the user wants to run logrotate
+    read -p "Do you want to run logrotate for the new syslog file now? [y/N]: " response
+    response=${response,,} # Convert to lowercase for consistency
+    
+    if [[ "$response" == "y" ]]; then
+        # Run logrotate for the syslog file
+        logrotate -f "$FILE"
+        if [ $? -eq 0 ]; then
+            echo "logrotate ran successfully for $FILE"
+        else
+            echo "Failed to run logrotate for $FILE"
+        fi
+    else
+        echo "Skipping logrotate for $FILE"
+    fi
     exit 0
 fi
