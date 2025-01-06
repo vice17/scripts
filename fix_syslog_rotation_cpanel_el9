@@ -5,7 +5,7 @@ FILE="/etc/logrotate.d/rsyslog"
 
 # Check if the file already exists
 if [ -e "$FILE" ]; then
-    echo "syslog file already exists"
+    echo "rsyslog file already exists on logrotate config"
     exit 0
 else
     # Create the file with the specified content
@@ -23,7 +23,7 @@ else
     endscript
 }
 EOF
-    echo "syslog file created successfully"
+    echo "rsyslog file created successfully on /etc/logrotate.d/"
     
     exit 0
 fi
